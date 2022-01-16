@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@100;300;400&display=swap");
+
+.trash {
+  padding: 10px 20px;
+  color: white;
+  background-color: #ff2442;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Barlow", sans-serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+}
+
+.trash:hover {
+  transform: scale(1.1);
+}
