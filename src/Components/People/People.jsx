@@ -4,15 +4,33 @@ import "./People.css";
 function People({ people, splitBetween, setShowSplit, setSplitBetween }) {
   const [bill, setBill] = useState("");
 
+  const [tempSplit, setTempSplit] = useState({
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    setSplitBetween(tempSplit);
     let count = 1;
 
     for (let i = 1; i <= 4; i++) {
-      if (splitBetween[i]) count++;
+      if (tempSplit[i]) count++;
     }
 
     setShowSplit({ showSplit: true, sharePerHead: parseInt(bill) / count });
+
+    setTempSplit({
+      1: false,
+      2: false,
+      3: false,
+      4: false,
+    });
+
+    setBill("");
   };
 
   return (
@@ -34,10 +52,13 @@ function People({ people, splitBetween, setShowSplit, setSplitBetween }) {
                 <input
                   name={person.id}
                   type={"checkbox"}
+                  checked={tempSplit[person.id]}
                   onClick={() => {
-                    setSplitBetween({
-                      ...splitBetween,
-                      [person.id]: !splitBetween[person.id],
+                    setTempSplit((prev) => {
+                      return {
+                        ...prev,
+                        [person.id]: !prev[person.id],
+                      };
                     });
                   }}
                 />
